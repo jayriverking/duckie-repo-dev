@@ -81,6 +81,25 @@ const updateDuckie = async (req, res) => {
 
 }
 
+// feed a duckie!
+const feedDuckie = async (req, res) => {
+    const { id } = req.params
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'No such duckie'})
+    }
+    const duckie = await Duckie.findOne({_id: id})
+    .then((duckie) => {
+        if (duckie.hunger > 99){
+            return res.json({message:"duckie is full!"})
+        }
+        duckie.hunger += 10
+        duckie.save()
+        res.status(200).json({message: 'duckie has been fed!'})
+    })
+    .catch((err) => res.status(500).json({message: "uh oh! something went wrong"}))
+
+}
+
 
 
 module.exports = {
@@ -88,5 +107,6 @@ module.exports = {
     getADuckie,
     createDuckie,
     deleteDuckie,
-    updateDuckie
+    updateDuckie,
+    feedDuckie
 }
