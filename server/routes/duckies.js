@@ -6,7 +6,10 @@ const {
     createDuckie,
     deleteDuckie,
     updateDuckie,
-    feedDuckie
+    feedDuckie,
+    petDuckie,
+    playDuckie,
+    studyDuckie
 } = require('../controllers/duckieController')
 
 // importing Duckie model
@@ -32,6 +35,16 @@ router.patch('/:id', updateDuckie)
 
 // feed a duck (patch request!)
 router.patch('/:id/feed', feedDuckie)
+
+// pet a duck
+router.patch('/:id/pet', petDuckie)
+
+// study with a duck
+router.patch('/:id/study', studyDuckie)
+
+// play with a duck
+router.patch('/:id/play', playDuckie)
+
 
 
 // export the router to be imported in server.js
