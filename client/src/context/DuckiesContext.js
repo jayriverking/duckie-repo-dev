@@ -13,12 +13,16 @@ export const duckiesReducer = (state, action) => {
             }
         case 'CREATE_DUCKIE':
             return {
-                duckies: [action.payload, ...state.duckies]
+                duckies: [...state.duckies, action.payload]
             }
         case 'DELETE_DUCKIE':
             return {
                 duckies: state.duckies.filter((du) => du._id !== action.payload._id )
             }
+        case 'UPDATE_DUCKIE':
+        return {
+            duckies: state.duckies.map((du) => du._id === action.payload._id ? action.payload : du)
+        }
         default:
             return state
     }
