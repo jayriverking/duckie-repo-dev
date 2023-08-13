@@ -16,7 +16,7 @@ const duckieSchema = new Schema({
     },
     hunger: {
         type: Number,
-        default: 50
+        default: 0
     },
     study: {
         type: Number,

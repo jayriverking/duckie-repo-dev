@@ -21,7 +21,7 @@ export const duckiesReducer = (state, action) => {
             }
         case 'UPDATE_DUCKIE':
         return {
-            duckies: state.duckies.map((du) => du._id === action.payload._id ? action.payload : du)
+            duckies: state.duckies.map((du) => du._id == action.payload._id ? action.payload : du)
         }
         default:
             return state
