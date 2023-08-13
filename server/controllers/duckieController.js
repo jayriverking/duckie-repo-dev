@@ -87,7 +87,7 @@ const feedDuckie = async (req, res) => {
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: 'No such duckie'})
     }
-    const duckie = await Duckie.findOne({_id: id})
+    await Duckie.findOne({_id: id})
     .then((duckie) => {
         if (duckie.hunger > 99){
             return res.json({message:"duckie is full!"})
