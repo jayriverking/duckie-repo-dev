@@ -142,13 +142,13 @@ const studyDuckie = async (req, res) => {
     await Duckie.findOne({_id: id})
     .then((duckie) => {
         if (duckie.study > 99){
-            res.json({message: "duckie is done learning"})
+            return res.json({message: "duckie is done studying"})
         }
         duckie.study += 10
         duckie.save()
-        res.status(200).json({message: "you taught duckie a new trick!"})
+        res.status(200).json({message: "you taught duckie a new trick"})
     })
-    .catch((err) => {res.status(500),json({message: "error occured" + err.message})})
+    .catch((err) => {res.status(500).json({message: "error!" + err.message})})
 }
 
 
