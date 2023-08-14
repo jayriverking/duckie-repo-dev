@@ -41,9 +41,9 @@ const Home = () => {
         })
     }
     // I want to output an 'ending' statement as a popup once affection stats reach 100; 
-    const outputEnding = async (id) => {
-        const duckie = await axios.get(`http://localhost:5050/ducks${id}`)
-        if (duckie && duckie.data.affection > 99){
+    const outputEnding = (duckie) => {
+        // const duckie = await axios.get(`http://localhost:5050/ducks${id}`)
+        if (duckie.affection > 99){
 
             let result = 'a Regular Rubber Duckie';
 
@@ -54,7 +54,7 @@ const Home = () => {
                 result = 'a Gastronomist'
             }
             else if (duckie.play > 90){
-                result = 'Anti-jobs Hippie'
+                result = 'an Anti-jobs Hippie'
             }
             else if (duckie.play > 80 && duckie.study > 60){
                 result = 'a Conspiracy Theorist'
