@@ -14,8 +14,9 @@ const validateDuckie = (id) => {
 
 const getDuckies = async (req, res) => {
     const duckies = await Duckie.find()
+    console.log(duckies)
 
-    res.status(200).json(duckies)
+    return res.status(200).json(duckies)
 }
 
 // get a single workout
