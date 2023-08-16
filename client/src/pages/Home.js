@@ -21,16 +21,47 @@ const Home = () => {
         })
     }
 
+    // I want to output an 'ending' statement as a popup once affection stats reach 100; 
+    // to let users know they've reached the end... but don't know where to put it :/
+    const outputEnding = (id) => {
+        const duckie = duckies.filter((duckie) => duckie._id == id)[0]
+        let result = ''
+        if (duckie.affection > 99){
+
+            
+
+            if (duckie.study > 90) {
+                result = 'a Lawyer'
+            }
+            else if (duckie.hunger > 90){
+                result = 'a Gastronomist'
+            }
+            else if (duckie.play > 90 && duckie.hunger > 40){
+                result = 'an Anti-jobs Hippie'
+            }
+            else if (duckie.study > 50 && duckie.play > 50) {
+                result = 'a Regular Rubber Duckie';
+            }
+            else if (duckie.play < 50 && duckie.study < 50){
+                result = 'a Conspiracy Theorist'
+            }
+        }
+        // window.alert
+        if(result){
+        return window.alert(`Your duckie, [${duckie.name}] has all grown up! It turned out to be ${result}`)
+    }}
+
     const updateDuckie = async (id, endpoint, action) => {
-        console.log(id)
+        // console.log(id)
         await fetch(`http://localhost:5050/ducks/${id}/${endpoint}`, {
             method: 'PATCH'
         })
-        // helper function to make sure stats stay under 100 max;
+        // helper function to make sure stats stay at 100 max;
         const checkDuckie = (duckie) => {
             return duckie[action] < 100 ? duckie[action] += 10 : duckie
         }
 
+        
         setDuckies(prevDuckies => {
             const updatedDuckies = prevDuckies.map(duckie => {
                 const updatedDuckie = {...duckie}
@@ -39,30 +70,12 @@ const Home = () => {
             })
             return updatedDuckies
         })
-    }
-    // I want to output an 'ending' statement as a popup once affection stats reach 100; 
-    const outputEnding = (duckie) => {
-        // const duckie = await axios.get(`http://localhost:5050/ducks${id}`)
-        if (duckie.affection > 99){
-
-            let result = 'a Regular Rubber Duckie';
-
-            if (duckie.study > 90) {
-                result = 'a Lawyer'
-            }
-            else if (duckie.hunger > 90){
-                result = 'a Gastronomist'
-            }
-            else if (duckie.play > 90){
-                result = 'an Anti-jobs Hippie'
-            }
-            else if (duckie.play > 80 && duckie.study > 60){
-                result = 'a Conspiracy Theorist'
-            }
-            // window.alert
-            console.log(`Your duckie, ${duckie.name} has all grown up! It turned out to be ${result}`)
+        if(endpoint == 'pet'){
+            return outputEnding(id)
         }
+        // outputEnding(id)
     }
+ 
 
     const deleteDuckie = (id) => {
         axios.delete(`http://localhost:5050/ducks/${id}`).then(
@@ -76,13 +89,7 @@ const Home = () => {
     useEffect(()=>{
         const fetchDuckies = async () => {
 // the fetch address should be changed to backend db once deployed, I think! >> this <sending requests to localhost> thing is only for the development phase!!
-            
-        //     const response = await fetch('http://localhost:5050/ducks')
-        //     const json = await response.json()
 
-        //     if (response.ok){
-        //         dispatch({type: 'SET_DUCKIES', payload: json})
-        //     }
             const duckies = await axios.get('http://localhost:5050/ducks')
             // console.log('my duckies',duckies)
             setDuckies(duckies.data)

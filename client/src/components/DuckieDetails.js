@@ -5,7 +5,7 @@ const DuckieDetails = ({ duckie, updateDuckie, deleteDuckie, outputEnding }) => 
     return (
         <div className="duckie-details">
             <h2>{duckie.name}</h2>
-            <p><strong>Affection: </strong><span onChange={()=>outputEnding(duckie)}>{duckie.affection}</span></p>
+            <p><strong>Affection:</strong>{duckie.affection}</p>
             <button onClick={() => updateDuckie(duckie._id, 'pet', 'affection')}>Pet</button>
             <p><strong>Hunger: </strong>{duckie.hunger}</p>
             <button onClick={() => updateDuckie(duckie._id, 'feed', 'hunger')}>Feed</button>
