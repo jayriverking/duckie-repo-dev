@@ -26,6 +26,6 @@ The stats are associated with implemented "endings", which traditionally doesn't
 
 
 ### Setting Up 
-once the duckie repo is cloned onto one's machine, head over to ```server``` directory and type in ```npm start``` in the terminal in order to start the server. Once the server message states that it is connected to mongoose and there are no connection errors, head over to ```https://glittering-kangaroo-ff2f6d.netlify.app/``` to play the game. *More work will be done sometime soon to patch up the frontend code for this deployed website so that players can directly interact with deployed front end website without needing to install anything onto their machines.*
+once the duckie repo is cloned onto one's machine, head over to ```server``` directory and type in ```npm start``` in the terminal in order to start the server. Once the server message states that it is connected to mongoose and there are no connection errors, head over to ```https://glittering-kangaroo-ff2f6d.netlify.app/``` to play the game. More work will be done sometime soon to patch up the frontend code for this deployed website so that players can directly interact with deployed front end website without needing to install anything onto their machines.
 
 
